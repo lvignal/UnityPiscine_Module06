@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Module06.Player;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,14 +26,13 @@ namespace Module06.Enemy
             _animator = GetComponent<Animator>();
             _initialPosition = transform.position;
             _initialRotation = transform.eulerAngles;
+            _detectionZone.OnPlayerDetected += PlaySound;
             _detectionZone.OnPlayerDetected += StartChasePlayer;
             _detectionZone.OnPlayerLost += StopSound;
         }
 
         public void StartChasePlayer()
         {
-            _sound.Play();
-            
             if (!_isChasingPlayer)
                 StartCoroutine(ChasePlayer());
         }
@@ -79,6 +77,11 @@ namespace Module06.Enemy
             enabled = true;
         }
         
+        private void PlaySound()
+        {
+            _sound.Play();
+        }
+        
         private void StopSound()
         {
             _sound.Stop();
@@ -94,6 +97,7 @@ namespace Module06.Enemy
         private void OnDestroy()
         {
             _detectionZone.OnPlayerDetected -= StartChasePlayer;
+            _detectionZone.OnPlayerDetected -= PlaySound;
             _detectionZone.OnPlayerLost -= StopSound;
         }
     }

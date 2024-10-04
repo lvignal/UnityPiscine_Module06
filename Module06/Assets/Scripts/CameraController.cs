@@ -9,8 +9,12 @@ namespace Module06.Camera
         [SerializeField] CinemachineVirtualCamera _tpsCamera;
         
         public bool IsFpsActive => _fpsCamera.gameObject.activeSelf;
-        public Vector3 Forward => GetComponent<UnityEngine.Camera>().transform.forward;
-        
+
+        private void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked; // hide cursor
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.C))
