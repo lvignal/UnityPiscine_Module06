@@ -13,7 +13,7 @@ namespace Module06.Player
         private Animator _animator;
         private Rigidbody _rigidbody;
         
-        private float _moveSpeed = 2f;
+        private float _moveSpeed = 1.8f;
         private float _rotationSpeed = 120f;
         private Vector3 _initialPosition;
         private Vector3 _initialRotation;
@@ -82,6 +82,8 @@ namespace Module06.Player
                 Vector3 movement = transform.forward * verticalInput * _moveSpeed * Time.deltaTime;
                 _rigidbody.MovePosition(_rigidbody.position + movement);
             }
+            
+            _rigidbody.rotation = Quaternion.Euler(0, _rigidbody.rotation.eulerAngles.y, 0);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -94,7 +96,7 @@ namespace Module06.Player
                 other.gameObject.SetActive(false);
             }
 
-            if (other.CompareTag("WinWardrobe"))
+            if (other.CompareTag("WinWardrobe") && NumberOfKeys == 3)
                 OnWin?.Invoke();
         }
 

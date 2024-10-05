@@ -12,7 +12,8 @@ namespace Module06.Camera
 
         private void Start()
         {
-            Cursor.lockState = CursorLockMode.Locked; // hide cursor
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void Update()

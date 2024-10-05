@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pivot: {fileID: 4580981630770037889}
+  _needKeysToOpen: 0
 --- !u!1 &4580981631963507421
 GameObject:
   m_ObjectHideFlags: 0
